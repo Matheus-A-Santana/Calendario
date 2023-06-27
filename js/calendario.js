@@ -15,9 +15,9 @@ date.getMonth(), 0).getDate();
 const firstDiaIndex = date.getDay();
 
 const lastDayIndex = new Date(date.getFullYear(),
-date.getMonth() + 1, 0).getDay(); 
+date.getMonth()).getDay(); 
 
-const nextDias = 7 - lastDayIndex - 1;
+const nextDias = lastDayIndex;
 
 const meses = [
     "Janeiro",
@@ -49,19 +49,19 @@ document.querySelector('.date h1').innerHTML =
 meses[date.getMonth()];
 
 document.querySelector('.date p').innerHTML =
-semana[new Date().getDay()] +", "+ new Date().getDate() + ",  "+ 
-date.getFullYear();
+new Date().getDate() + " de " + meses[new Date().getMonth()] + " de " + new Date().getFullYear() +
+ "<br>" + semana[new Date().getDay()];
 
 let dias = "";
 
 for(let x = firstDiaIndex; x > 0; x-- ){
-    dias += `<div class="prev-date">${prevLastDay - x + 1}</div>`; 
+    dias += `<div class="data-anterior">${prevLastDay - x + 1}</div>`; 
 }
 
 for(let i = 1; i <= lastDias; i++){
     if(i === new Date().getDate() && date.getMonth() === new Date().getMonth() 
     && date.getFullYear() === new Date().getFullYear()){
-        dias += `<div class="today">${i}</div>`;
+        dias += `<div class="hoje">${i}</div>`;
     }
     else{
         dias += `<div>${i}</div>`;
@@ -70,7 +70,7 @@ for(let i = 1; i <= lastDias; i++){
 }
 
 for(let j = 1; j <= nextDias; j++){
-    dias += `<div class="next-date">${j}</div>`;
+    dias += `<div class="data-posterior">${j}</div>`;
     mesesDias.innerHTML = dias;
 }
 }
